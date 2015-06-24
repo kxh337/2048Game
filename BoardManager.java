@@ -4,7 +4,7 @@ public class BoardManager{
 
   public void makeGUI(){
     JFrame frame = new JFrame("2048 Game");
-    
+    frame.setVisible(true);
   }
 
 }
