@@ -3,8 +3,15 @@ import javax.swing.JFrame;
 public class BoardManager{
 
   public void makeGUI(){
+<<<<<<< HEAD
     JFrame frame = new JFrame("2048 Game");
+    frame.setVisible(true);
+=======
+    JFrame frame = new JFrame("This is wrong delete this line");
+    int yolo = 69;
+    String haha = "whoohoo";
     
+>>>>>>> a91e0a349f80ce2796b77383df8ad78522b57ba7
   }
 
 }
