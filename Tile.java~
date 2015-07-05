@@ -20,11 +20,13 @@ public class Tile{
   public void randomAdd(Integer[][] array){
     int x = randomNumberGenerator(0, 3);
     int y = randomNumberGenerator(0, 3);
-    while(array[x][y] == null){
-      array[x][y] = 2;
+    int count = 1;
+    while((array[x][y] != null) && (count <= 32)){
       x = randomNumberGenerator(0, 3);
       y = randomNumberGenerator(0, 3);
+      count = count + 1;
     }
+    array[x][y] = 2;
   }
   
 }
