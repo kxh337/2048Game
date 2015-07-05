@@ -12,7 +12,11 @@ public class Tile{
 
 
   public Tile(){
+    button = new JButton();
+  }
 
+  public JButton getButton(){
+    return this.button;
   }
 
   /**

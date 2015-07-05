@@ -10,8 +10,9 @@ import java.util.Random;
  */
 public class BoardManager{
 
-  private JButton[][] grid;
+  private Tile[][] grid;
   private Random rand = new Random();
+  private int tileCount;
 
   /**
    * Creates the board for the game
@@ -41,11 +42,11 @@ public class BoardManager{
    */
   public void createTiles(int gridRow, int gridCol, JFrame frame){
     frame.setLayout(new GridLayout(gridRow , gridCol));
-    grid = new JButton[gridRow][gridCol];
+    grid = new Tile[gridRow][gridCol];
     for(int i = 0; i < gridRow; i = i + 1){
       for(int j = 0; j < gridCol; j = j + 1){
-        grid[i][j] = new JButton();
-        frame.add(grid[i][j]);
+        grid[i][j] = new Tile();
+        frame.add(grid[i][j].getButton());
       }
     }
     frame.setVisible(true);
@@ -67,12 +68,21 @@ public class BoardManager{
    * @param array - two dimensional array of the tiles
    */
   public void randomAddTile(Tile[][] array){
-    int x = randomNumberGenerator(0, 3);
-    int y = randomNumberGenerator(0, 3);
-    while(array[x][y].getValue() == 0){
+    if(tileCount<16){
+        int x = randomNumberGenerator(0, 3);
+        int y = randomNumberGenerator(0, 3);
+
+      while(array[x][y].getValue() != 0){
+        x = randomNumberGenerator(0, 3);
+        y = randomNumberGenerator(0, 3);
+      }
+
       array[x][y].setValue(2);
-      x = randomNumberGenerator(0, 3);
-      y = randomNumberGenerator(0, 3);
+      tileCount++;
+    }
+    else{
+      System.err.println("No more tiles can be added");
     }
   }
+
 }
