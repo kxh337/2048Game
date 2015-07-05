@@ -7,7 +7,14 @@
  * will end if there is a tile of a value of 2048.
  */
 public class TwentyFourtyEight{
-
+	
+	/**
+	 * Main method that starts the game
+	 */
+  public static void main(String args[]){
+    BoardManager game = new BoardManager();
+    
+  }
   
 
 }

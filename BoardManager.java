@@ -1,6 +1,7 @@
 import javax.swing.JFrame;
 import java.awt.GridLayout;
 import javax.swing.JButton;
+import java.util.Random;
 
 /**
  * The BoardManager class is responsible for placing tiles on the board and
@@ -8,30 +9,70 @@ import javax.swing.JButton;
  * Tiles whhen needed and set the tiles to the proper value.
  */
 public class BoardManager{
-  
-  public static void main(String args[]){
-    BoardManager game = new BoardManager();
-    JFrame frame = game.makeGUI(750, 650);
-    game.createTiles(4,4, frame);
+
+  private JButton[][] grid;
+  private Random rand = new Random();
+
+  /**
+   * Creates the board for the game
+   */
+  public BoardManager(){
+    JFrame frame = this.makeGUI(750, 650);
+    this.createTiles(4,4, frame);
   }
   
- public JFrame makeGUI(int input1, int input2){
+  /**
+   * Sets the size of the GUI frame and label of the frame
+   * @param width - the width of the JFrame in pixels
+   * @param hieght - the hieght of the Jframe in pixels
+   */
+  public JFrame makeGUI(int width, int height){
     JFrame frame = new JFrame("2048 Game");
-    frame.setSize(input1, input2);
+    frame.setSize(width, height);
     frame.setLocationRelativeTo(null);
     frame.setVisible(true);
     return frame;
   }
   
-  public void createTiles(int input1, int input2, JFrame frame){
-    frame.setLayout(new GridLayout(input1 , input2));
-    JButton[][] grid = new JButton[input1][input2];
-    for(int i = 0; i < input1; i = i + 1){
-      for(int j = 0; j < input2; j = j + 1){
+  /**
+   * Initializer that lays out the tiles on the board in specified JFrame
+   * @param gridRow - the Tile row count in the Grid
+   * @param gridCol - the Tile column count in the Grid
+   */
+  public void createTiles(int gridRow, int gridCol, JFrame frame){
+    frame.setLayout(new GridLayout(gridRow , gridCol));
+    grid = new JButton[gridRow][gridCol];
+    for(int i = 0; i < gridRow; i = i + 1){
+      for(int j = 0; j < gridCol; j = j + 1){
         grid[i][j] = new JButton();
         frame.add(grid[i][j]);
       }
     }
     frame.setVisible(true);
+  }
+
+  /**
+   * Generates a random number between the min and max values
+   * @param min - the minimum value the random number can be
+   * @param max - the maximum value the random number can be
+   */
+  public int randomNumberGenerator(int min, int max){
+    int number = rand.nextInt((max - min) + 1) + min;
+    return number;
+  }
+
+
+  /**
+   * This adds tiles randomly to the board
+   * @param array - two dimensional array of the tiles
+   */
+  public void randomAddTile(Tile[][] array){
+    int x = randomNumberGenerator(0, 3);
+    int y = randomNumberGenerator(0, 3);
+    while(array[x][y].getValue() == 0){
+      array[x][y].setValue(2);
+      x = randomNumberGenerator(0, 3);
+      y = randomNumberGenerator(0, 3);
+    }
   }
 }
