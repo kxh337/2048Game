@@ -12,7 +12,7 @@ public class Tile{
   public Tile(){
 
   }
-  
+
   /**
    * Sets the value of this tile and updates the button
    * @param value - the value the tile will be set to
@@ -40,5 +40,6 @@ public class Tile{
     else{
       //show value
     }
+    array[x][y] = 2;
   }
 }
