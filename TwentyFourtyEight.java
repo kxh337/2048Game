@@ -12,8 +12,24 @@ public class TwentyFourtyEight{
 	 * Main method that starts the game
 	 */
   public static void main(String args[]){
-    BoardManager game = new BoardManager();
-    
+    BoardManager board = new BoardManager();
+    while(!(board.checkGameOver())){
+      //sleeps the loop a bit so it doesn't hog your processor
+      try
+      {
+          Thread.sleep(500);
+      }
+      catch (Exception e)
+      {
+          e.printStackTrace();
+      }
+
+    	if(ArrowKeyEvent.dir != ArrowKeyEvent.NONE){
+        board.slideTiles(ArrowKeyEvent.dir);
+        ArrowKeyEvent.dir = ArrowKeyEvent.NONE;
+      }
+    }
+    System.out.println("Game Over");
   }
   
 

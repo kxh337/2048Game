@@ -9,7 +9,6 @@ import java.util.Random;
  * Tiles whhen needed and set the tiles to the proper value.
  */
 public class BoardManager{
-
   private Tile[][] grid;
   private Random rand = new Random();
   private int tileCount;
@@ -32,6 +31,8 @@ public class BoardManager{
     frame.setSize(width, height);
     frame.setLocationRelativeTo(null);
     frame.setVisible(true);
+    frame.addKeyListener(new ArrowKeyEvent());
+    frame.setFocusable(true);
     return frame;
   }
   
@@ -67,13 +68,48 @@ public class BoardManager{
     return number;
   }
 
+  /**
+   * This method checks if the game is over. In other words if 2048
+   * is a value on any of the tiles
+   */
+  public boolean checkGameOver(){
+    boolean gameOver = false;
+    for (int i = 0; i < grid.length; i++){
+      for (int j = 0; j < grid[i].length; j++){
+        if(grid[i][j].getValue() == 2048){
+          gameOver = true;
+        }
+      }
+    }
+    //Check if nothing can be combined
+    if(tileCount == 16 && checkNoMergableTiles()){
+    	
+	}	
+	return gameOver;
+  }
+
+  /**
+   * This method checks to see if there are any tiles left that can 
+   * be merged. 
+   * @return result - is true if there are no tiles left to be merged
+   */
+  public boolean checkNoMergableTiles(){
+    boolean result  = true;
+    for (int i = 0; i < grid.length; i++){
+      for (int j = 0; j < grid[i].length; j++){
+        //check each tile and make sure it can't merge with a neighboring tile
+
+      }
+    }
+    return result;
+  }
 
   /**
    * This adds tiles randomly to the board
    * @param array - two dimensional array of the tiles
    */
   public void randomAddTile(Tile[][] array){
-    if(tileCount<16){
+    if(tileCount < 16){
         int x = randomNumberGenerator(0, 3);
         int y = randomNumberGenerator(0, 3);
 
@@ -87,6 +123,48 @@ public class BoardManager{
     }
     else{
       System.err.println("No more tiles can be added");
+    }
+  }
+
+
+  /**
+   * Called by the main method to slide the Tiles based
+   * on the users arrow key input. This will call the horizontal
+   * and veritcal slide to easily handle all directions of slides.
+   */
+  public void slideTiles(int dir){
+    if(dir == ArrowKeyEvent.UP || dir == ArrowKeyEvent.DOWN){
+      veritcalSlide(dir);
+    }
+    else if(dir == ArrowKeyEvent.RIGHT || dir == ArrowKeyEvent.LEFT){
+      horizontalSlide(dir);
+    }
+    else{
+      System.err.println("Bad Key was pressed");
+    }
+  }
+
+  /**
+   * This method will first merge all possible Tiles in
+   * each column and then slide them accordingly.  The direction
+   * will change how merge and sliding are handled
+   * @param dir - direction of sliding and merging
+   */
+  public void veritcalSlide(int dir){
+    for(int i = 0; i < grid.length; i++){
+      
+    }
+  }
+
+  /**
+   * This method will first merge all possible Tiles in
+   * each row and then slide them accordingly.  The direction
+   * will change how merge and sliding are handled
+   * @param dir - direction of sliding and merging
+   */
+  public void horizontalSlide(int dir){
+  	for(int i = 0; i < grid[0].length; i++){
+      
     }
   }
 

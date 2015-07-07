@@ -10,7 +10,6 @@ public class Tile{
   private int value;
   private JButton button;
 
-
   public Tile(){
     button = new JButton();
   }
@@ -33,6 +32,18 @@ public class Tile{
    */
   public int getValue(){
     return this.value;
+  }
+
+  /**
+   * Merges the tiles by adding the values and changing 
+   * the tiles position accordingly.
+   * @param tile - the Tile to be added to this Tile
+   */
+  public void mergeTile(Tile tile){
+    value = value + tile.getValue();
+    tile.value = 0;
+    tile.updateButton();
+    updateButton();
   }
 
   /**
