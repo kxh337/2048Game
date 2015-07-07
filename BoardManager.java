@@ -50,6 +50,11 @@ public class BoardManager{
       }
     }
     frame.setVisible(true);
+    //randomly add 2-4 tiles to begin with
+    int startTileCount = randomNumberGenerator(2,4);
+    for(int i = 0;i < startTileCount; i++){
+      randomAddTile(grid);
+    }
   }
 
   /**

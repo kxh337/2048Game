@@ -42,9 +42,11 @@ public class Tile{
   public void updateButton(){
     if(this.value == 0){
       //show nothing
+      this.button.setText("");
     }
     else{
       //show value
+      this.button.setText(Integer.toString(value));
     }
   }
 }
