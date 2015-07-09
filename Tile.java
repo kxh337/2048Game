@@ -14,6 +14,10 @@ public class Tile{
     button = new JButton();
   }
 
+  public void setButton(JButton button){
+    this.button = button;
+  }
+
   public JButton getButton(){
     return this.button;
   }
@@ -32,6 +36,16 @@ public class Tile{
    */
   public int getValue(){
     return this.value;
+  }
+
+  /**
+   * Swaps this tile's value with the inputed tile
+   */
+  public void swap(Tile tile){
+    int temp = tile.getValue();
+    tile.setValue(this.getValue());
+    this.setValue(temp);
+
   }
 
   /**

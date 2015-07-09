@@ -152,36 +152,111 @@ public class BoardManager{
     }
   }
 
+  
+
   /**
    * Slides the tiles up
    */
   public void slideUp(){
-    //find pairs and merge
-    //slide remaining tiles upwards
+    for(int i = 1; i < grid.length; i++){
+      for(int j = 0; j < grid[i].length; j++){
+        //finds which tiles are not 0
+        if(grid[i][j].getValue() != 0){
+          int k = i - 1;
+          //finds the last non-0 tile in upwards
+          while(grid[k][j].getValue() == 0 && k > 0){
+            k--;
+          }
+          //moves it to the tile if it has a value of 0
+          if(grid[k][j].getValue() == 0){
+            grid[i][j].swap(grid[k][j]);
+          }
+          //moves it to the last zero in the upwards direction
+          else{
+            grid[i][j].swap(grid[k + 1][j]);
+          }
+        }
+      }
+    }
   }
 
   /**
    * Slides the tiles down
    */
   public void slideDown(){
-    //find pairs and merge
-    //slide remaining tiles downwards
+    for(int i = grid.length - 2; i >= 0 ; i--){
+      for(int j = 0; j< grid[0].length; j++){
+        //finds which tiles are not 0
+        if(grid[i][j].getValue() != 0){
+          int k = i + 1;
+          //finds the last non-0 tile in the downwards
+          while(grid[k][j].getValue() == 0 && k < grid[0].length-1){
+            k++;
+          }
+          //moves it to the tile if it has a value of 0
+          if(grid[k][j].getValue() == 0){
+            grid[i][j].swap(grid[k][j]);
+          }
+          //moves it to the last zero in the downwards direction
+          else{
+            grid[i][j].swap(grid[k - 1][j]);
+          }
+        }
+      }
+    }
   }
 
   /**
    * Slides the tiles right
    */
   public void slideRight(){
-    //find pairs and merge
-    //slide remaining tiles to the right
+    for(int i = 0; i < grid.length; i++){
+      for(int j = grid[0].length-2; j >= 0; j--){
+        //finds which tiles are not 0
+        if(grid[i][j].getValue() != 0){
+          int k = j + 1;
+          //finds the last non-0 tile in the right direction
+          while(grid[i][k].getValue() == 0 && k < grid[0].length-1){
+            k++;
+          }
+          //moves it to the tile if it has a value of 0
+          if(grid[i][k].getValue() == 0){
+            grid[i][j].swap(grid[i][k]);
+          }
+          //moves it to the last zero in the right direction
+          else{
+            grid[i][j].swap(grid[i][k - 1]);
+          }
+        }
+      }
+    }
   }
 
   /**
    * Slides the tiles left
    */
   public void slideLeft(){
-    //find pairs and merge
-    //slide remaining tiles to the left
+    //goes through each tile
+    for(int i = 0; i < grid.length; i++){
+      for(int j = 1; j < grid[i].length; j++){
+        //finds which tiles are not 0
+        if(grid[i][j].getValue() != 0){
+          int k = j - 1;
+          //finds the last non-0 tile in the left direction
+          while(grid[i][k].getValue() == 0 && k > 0){
+            k--;
+          }
+          //moves it to the tile if it has a value of 0
+          if(grid[i][k].getValue() == 0){
+            grid[i][j].swap(grid[i][k]);
+          }
+          //moves it to the last zero in the left direction
+          else{
+            grid[i][j].swap(grid[i][k + 1]);
+          }
+        }
+      }
+    }
   }
   
 
