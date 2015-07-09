@@ -1,5 +1,5 @@
 import javax.swing.JButton;
-
+import java.awt.Font;
 /**
  * The Tile class represents each tile on the board and will carry
  * a value that is a power of 2 the lowest being 2 and highest being 2048
@@ -12,6 +12,7 @@ public class Tile{
 
   public Tile(){
     button = new JButton();
+    button.setFont(new Font("Arial", Font.PLAIN, 30));
   }
 
   public void setButton(JButton button){
