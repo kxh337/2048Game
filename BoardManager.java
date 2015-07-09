@@ -133,39 +133,56 @@ public class BoardManager{
    * and veritcal slide to easily handle all directions of slides.
    */
   public void slideTiles(int dir){
-    if(dir == ArrowKeyEvent.UP || dir == ArrowKeyEvent.DOWN){
-      veritcalSlide(dir);
-    }
-    else if(dir == ArrowKeyEvent.RIGHT || dir == ArrowKeyEvent.LEFT){
-      horizontalSlide(dir);
-    }
-    else{
-      System.err.println("Bad Key was pressed");
-    }
-  }
-
-  /**
-   * This method will first merge all possible Tiles in
-   * each column and then slide them accordingly.  The direction
-   * will change how merge and sliding are handled
-   * @param dir - direction of sliding and merging
-   */
-  public void veritcalSlide(int dir){
-    for(int i = 0; i < grid.length; i++){
-      
+    switch(dir){
+      case  ArrowKeyEvent.UP:
+        slideUp();
+        break;
+      case ArrowKeyEvent.DOWN:
+        slideDown();
+        break;
+      case ArrowKeyEvent.RIGHT:
+        slideRight();
+        break;
+      case ArrowKeyEvent.LEFT:
+        slideLeft();
+        break;
+      default:
+        System.err.println("Bad Key was pressed");
+        break;
     }
   }
 
   /**
-   * This method will first merge all possible Tiles in
-   * each row and then slide them accordingly.  The direction
-   * will change how merge and sliding are handled
-   * @param dir - direction of sliding and merging
+   * Slides the tiles up
    */
-  public void horizontalSlide(int dir){
-  	for(int i = 0; i < grid[0].length; i++){
-      
-    }
+  public void slideUp(){
+    //find pairs and merge
+    //slide remaining tiles upwards
   }
+
+  /**
+   * Slides the tiles down
+   */
+  public void slideDown(){
+    //find pairs and merge
+    //slide remaining tiles downwards
+  }
+
+  /**
+   * Slides the tiles right
+   */
+  public void slideRight(){
+    //find pairs and merge
+    //slide remaining tiles to the right
+  }
+
+  /**
+   * Slides the tiles left
+   */
+  public void slideLeft(){
+    //find pairs and merge
+    //slide remaining tiles to the left
+  }
+  
 
 }
