@@ -55,10 +55,10 @@ public class Tile{
    * @param tile - the Tile to be added to this Tile
    */
   public void mergeTile(Tile tile){
-    value = value + tile.getValue();
+    this.value = value + tile.getValue();
     tile.value = 0;
     tile.updateButton();
-    updateButton();
+    this.updateButton();
   }
 
   /**

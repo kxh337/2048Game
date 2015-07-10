@@ -17,7 +17,7 @@ public class TwentyFourtyEight{
       //sleeps the loop a bit so it doesn't hog your processor
       try
       {
-          Thread.sleep(500);
+          Thread.sleep(300);
       }
       catch (Exception e)
       {

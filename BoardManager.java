@@ -135,29 +135,100 @@ public class BoardManager{
   public void slideTiles(int dir){
     switch(dir){
       case  ArrowKeyEvent.UP:
+        mergeUp();
         slideUp();
         break;
       case ArrowKeyEvent.DOWN:
+        mergeDown();
         slideDown();
         break;
       case ArrowKeyEvent.RIGHT:
+        mergeRight();
         slideRight();
         break;
       case ArrowKeyEvent.LEFT:
+        mergeLeft();
         slideLeft();
         break;
       default:
         System.err.println("Bad Key was pressed");
         break;
     }
+    randomAddTile(grid);
   }
 
-  
+  private void mergeUp(){
+    for(int i = 0; i < grid.length - 1; i++){
+      for(int j = 0; j < grid[0].length; j++){
+        if(grid[i][j].getValue() != 0){
+          int k = i + 1;
+          while(grid[k][j].getValue() == 0 && k < grid[0].length - 1){
+            k++;
+          }
+          if(grid[i][j].getValue() == grid[k][j].getValue()){
+            grid[i][j].mergeTile(grid[k][j]);
+            tileCount--;
+          }
+        }
+      }
+    }
+  }
+
+  private void mergeDown(){
+    for(int j = 0; j < grid[0].length; j++){
+      for(int i = grid.length - 1; i > 1; i--){
+        if(grid[i][j].getValue() != 0){
+          int k = i - 1;
+          while(grid[k][j].getValue() == 0 && k > 0){
+            k--;
+          }
+          if(grid[i][j].getValue() == grid[k][j].getValue()){
+            grid[i][j].mergeTile(grid[k][j]);
+            tileCount--;
+          }
+        }
+      }
+    }
+  }
+
+  private void mergeRight(){
+    for(int i = 0; i < grid.length; i++){
+      for(int j = grid[0].length - 1; j > 0 ; j--){
+        if(grid[i][j].getValue() != 0){
+          int k = j - 1;
+          while(grid[i][k].getValue() == 0 && k > 0){
+            k--;
+          }
+          if(grid[i][j].getValue() == grid[i][k].getValue()){
+            grid[i][j].mergeTile(grid[i][k]);
+            tileCount--;
+          }
+        }
+      }
+    }
+  }
+
+  private void mergeLeft(){
+    for(int i = 0; i < grid.length; i++){
+      for(int j = 0; j < grid[0].length - 1; j++){
+        if(grid[i][j].getValue() != 0){
+          int k = j + 1;
+          while(grid[i][k].getValue() == 0 && k < grid[0].length - 1){
+            k++;
+          }
+          if(grid[i][j].getValue() == grid[i][k].getValue()){
+            grid[i][j].mergeTile(grid[i][k]);
+            tileCount--;
+          }
+        }
+      }
+    }
+  }
 
   /**
    * Slides the tiles up
    */
-  public void slideUp(){
+  private void slideUp(){
     for(int i = 1; i < grid.length; i++){
       for(int j = 0; j < grid[i].length; j++){
         //finds which tiles are not 0
@@ -183,7 +254,7 @@ public class BoardManager{
   /**
    * Slides the tiles down
    */
-  public void slideDown(){
+  private void slideDown(){
     for(int i = grid.length - 2; i >= 0 ; i--){
       for(int j = 0; j< grid[0].length; j++){
         //finds which tiles are not 0
@@ -209,7 +280,7 @@ public class BoardManager{
   /**
    * Slides the tiles right
    */
-  public void slideRight(){
+  private void slideRight(){
     for(int i = 0; i < grid.length; i++){
       for(int j = grid[0].length-2; j >= 0; j--){
         //finds which tiles are not 0
@@ -235,7 +306,7 @@ public class BoardManager{
   /**
    * Slides the tiles left
    */
-  public void slideLeft(){
+  private void slideLeft(){
     //goes through each tile
     for(int i = 0; i < grid.length; i++){
       for(int j = 1; j < grid[i].length; j++){
